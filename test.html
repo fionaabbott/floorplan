@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+var token ="96C3CF52BEA2C736B8CB68CFF26EF77F0E476F151B93A91B13CC868C24B8F8E8A46A50CB6B8856813D8A3A1EC67A792F01ED822612B7030D6CFC62C155DBD4913606B3D2EBAE8061B5A29F392D9916D7A7E5D25BED8C0E349BFA662924B68338150B3EAD655344F0220BDA87A2F049368929CA00DAD1DAAB0A2384B1FD61FBE6";
+
+$.ajax({
+	//url:"http://connectdev.supportuw.org/api/users?token="+token,
+	url:"http://connectdev.supportuw.org/api/users",
+	type: 'GET',
+	dataType: 'json',
+	headers: {
+		"Authorization":"Basic"+token,
+	}
+	
+	
+}).done(function(data){
+$("#debug").html(data);
+console.log(token);
+});
+
+});
+</script>	
+</head>
+<body>
+<div id="debug">
+
+</div>
+</body>
+</html>

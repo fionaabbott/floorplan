@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<style>
+		html{font:10pt Arial}
+		#list_of_names {
+			width: 10%;
+			float: left;
+			/*border:1px solid black*/
+		}
+
+		.person {
+			padding: 3px;
+			border: 1px dotted black;
+			margin: 1px
+		}
+
+		#employee_name{height:1.5em;font-style:italic}
+		text.seat,rect.seat{cursor:pointer}
+	</style>
+</head>
+
+<body>
+	<select id="employees">
+		<option>Select an employee...</option>
+
+	</select>
+	<p id="employee_name"></p>
+	<div id="floormap"></div>
+
+	<script>
+
+		$(document).ready(function () {
+			var seat = "";
+			var employees_arr = [];
+
+			function getQueryVariable(variable) {
+				var query = window.location.search.substring(1);
+				var vars = query.split("&");
+				for (var i = 0; i < vars.length; i++) {
+					var pair = vars[i].split("=");
+					if (pair[0] == variable) {
+						return pair[1];
+					}
+				}
+				return false;
+
+			}
+
+			function makeEmployeeList(){
+				var employees_arr = [];
+				employees_arr.push({"seat":employee_info['addressLine1'],"name":employee_info['firstName']+" "+employee_info['lastName']});
+			
+			}
+
+			
+
+			function highlightSeat(seat) {
+				$("rect#" + seat).css("fill", "#C5050C");
+				$("rect#" + seat).css("cursor", "pointer");
+				$("text#num" + seat).css("fill", "#FFFFFF");
+				$("text#num" + seat).css("cursor", "pointer");
+			}
+
+			function hideSeat(seat) {
+				$("rect#" + seat).css("fill", "#FFFFFF");
+				$("text#num" + seat).css("fill", "#000");
+				$("text#num" + seat).css("cursor", "default");
+				$("rect#" + seat).css("cursor", "default");
+			}
+
+			//loads initial location based on query string
+			var location = getQueryVariable("l");
+			//console.log(location);
+
+			if (location) {
+				var building = location.split("-")[0];
+				seat = location.split("-")[1];
+				highlightSeat(seat);
+			}
+
+			$("#employees").change(function () {
+				if (seat != "") {
+					hideSeat(seat);
+				}
+				seat = $("select#employees option:selected").val();
+				//console.log(seat);
+				highlightSeat(seat);
+			});
+
+			//determine if we've got the right floor loaded
+
+			if ($("#floormap").html() != "") {
+				console.log("Floor_Plan_1848_3 is loaded");
+			} else {
+				//console.log("Floorplan is empty");
+				$("#floormap").load("1848-3.svg", function () {
+					//console.log(seat);
+					$(".seat").hover(function () {
+						if(seat != ""){
+							hideSeat(seat);
+						}
+						//$(this).css("cursor","pointer");
+						seat = $(this).attr("data-seat");
+						//console.log($(this));
+						highlightSeat(seat);
+
+						if($("option[value='"+seat+"']").text()){
+							$("#employee_name").html($("option[value='"+seat+"']").text()+" sits here.");
+						}else{
+							$("#employee_name").html("This seat is currently unoccupied.");
+						}
+						
+						//console.log($("option[value='"+seat+"']").text());
+						//$(seat).css("opacity",".5");
+						//console.log($("#employees")).html();
+						//var emp = getEmployee(employees_arr,seat);
+						//console.log(emp);
+					}, function () {
+						//$(this).css("cursor","default");
+						hideSeat(seat);
+						//console.clear();
+						$("#employee_name").html("");
+					});
+				});
+			}
+
+
+			$.getJSON("users.json", function (data) {
+				var floor = "";
+				var seat = "";
+				
+				$.each(data, function (key, employee_info) {
+					employees_arr.push(employee_info);
+
+					if (employee_info['addressLine1'].match(/1848-[0-90-90-9]/)) {
+						floor = employee_info['addressLine1'].split("-")[0];
+						seat = employee_info['addressLine1'].split("-")[1];
+						if (seat.charAt(0) == "3") {
+							//$("#employees").append("<option value='"+seat+"'>"+employee_info['firstName']+" "+employee_info['lastName']+" "+seat+"</option>");
+							$("#employees").append("<option value='" + seat + "'>" + employee_info['firstName'] + " " + employee_info['lastName'] + "</option>");
+							//$("#employees").append("<option value='"+seat+"'>"+seat+"</option>");
+						}
+					}
+
+				});
+			});
+
+			Object.size = function(obj){
+				var size = 0;
+				key;
+				for(key in obj){
+					if(obj.hasOwnProperty(key)) 
+						size++;
+					return size;
+				}
+			}
+
+			
+
+			//console.log(employees_arr.length);
+			//console.log(emp);
+
+
+
+		});
+
+
+
+	</script>
+
+</body>
+
+</html>
