@@ -43,12 +43,12 @@ $(document).ready(function() {
       var location_bits = location.split("-");
       building = location_bits[0];
       seat = location_bits[1];
-      floor = seat.substring(0,1);
+      floor = seat.substring(0, 1);
     } else if (location.search(/(1848|650)-\d{1}/) !== -1) {
       var location_bits = location.split("-");
       building = location_bits[0];
 
-      if (location.search("TD") !== -1) {       
+      if (location.search("TD") !== -1) {
         floater = true;
         floor = location_bits[1].substring(0, 1);
         seat = location_bits[1];
@@ -56,14 +56,13 @@ $(document).ready(function() {
       } else {
         floor = location_bits[1];
       }
-      
     } else {
       location = "650-1";
     }
   }
 
   console.log("location: " + location);
-  console.log("building: "+building);
+  console.log("building: " + building);
   console.log("floor: " + floor);
   console.log("seat: " + seat);
 
@@ -101,7 +100,7 @@ $(document).ready(function() {
     $("#floormap").load(svgfile + "?l=" + building + "-" + floor, function() {
       //console.log("location: "+location);
 
-      if (seat !== false & floater === false) {
+      if ((seat !== false) & (floater === false)) {
         highlightSeat(seat);
         $("#employee_name").html(
           $("option[value='" + seat + "']").text() +
@@ -109,14 +108,67 @@ $(document).ready(function() {
             seat +
             "."
         );
-      } else if (seat !== false & floater === true) {
+      } else if ((seat !== false) & (floater === true)) {
         $("#employee_name").html(
-          $("option[value='" + seat + "']").text() + " does not have a permanently assigned location on this floor."
-        );        
+          $("option[value='" + seat + "']").text() +
+            " does not have a permanently assigned location on this floor."
+        );
       }
 
+      $(".seat").click(function(event) {
+        //alert("Hi!");
+        //alert(event.currentTarget);
+        if (seat != "") {
+          hideSeat(seat);
+          floater = false;
+          $("#employee_name").html("");
+          $("title").text("");
+        }
+        seat = $(this).attr("data-seat");
+        highlightSeat(seat);
+
+        if ($("option[value='" + seat + "']").text()) {
+          $("#employee_name").html(
+            $("option[value='" + seat + "']").text() +
+              " sits here at " +
+              seat +
+              "."
+          );
+
+          //adds a tooltip
+          //$("rect#"+seat).append("<title>"+$("option[value='" + seat + "']").text() + " sits here.</title>");
+          $("title").text(
+            $("option[value='" + seat + "']").text() +
+              " sits here at " +
+              seat +
+              "."
+          );
+        } else {
+          $("#employee_name").html(seat + " is not permanently assigned.");
+          $("title").text(seat + " is not permanently assigned.");
+        }
+      });
+
+      $(".seat").hover(function () {
+        if ($(this).attr("data-seat") !== seat) {
+          $("title").text($(this).attr("data-seat"));
+        } else {
+          if ($("option[value='" + seat + "']").text()) {
+            $("title").text($("option[value='" + seat + "']").text() + " sits here at " + seat + ".");
+          } else {
+            $("title").text(seat + " is not permanently assigned.");
+          }
+          
+        }
+      });
+/*
+      $(":not('.seat')").hover(function () {
+        $("title").text("");
+      })
+*/
+      /*
       //console.log(seat);
-      $("rect.seat,path.seat").hover(
+      $("rect.seat").toggle(
         function() {
           if (seat != "") {
             hideSeat(seat);
@@ -153,7 +205,7 @@ $(document).ready(function() {
           $("#employee_name").html("");
           $("title").text("");
         }
-      );
+      );*/
     });
   }
 

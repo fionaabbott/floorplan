@@ -1,59 +1,64 @@
 <?php
-	$not_wfaa = FALSE;
-	//Grab Location from URL
-	if(isset($_GET["l"]) && ($_GET["l"] != "")) {
-		$cube_location = $_GET["l"];
-		
-		$filename = $cube_location . ".png";
-		//Make sure file exists
-		if (file_exists($filename)) { 
-			header("Location: https://www.supportuw.org/connect/floorplan/" . $filename);
-		} 
-		if (!file_exists($filename)) {
-			//if there isn't an image, go to the maps for one of our three office locations
-			switch ($cube_location) {
-				case "1848":
-					header("Location: http://map.wisc.edu/s/r8vhw7n2");
-					break;
-				case "1900":
-					header("Location: http://map.wisc.edu/s/r8vhw7n2");
-					break;
-				case "650":
-					header("Location: http://map.wisc.edu/s/7qlyk8ry");
-					break;
-				case "711":
-					header("Location: http://map.wisc.edu/s/qogqzzf2");
-					break;
-			}	
-			$not_wfaa = TRUE;
-		}
-		if ($not_wfaa) {
-			//is the person on campus or unassigned? 
-			//first, drop the office number and dash
-			$cube_location = preg_replace('/[0-9]+/', '', $cube_location);
-			$cube_location = trim($cube_location, "- ");
-			switch ($cube_location) {
-				case "Engineering Hall":
-					header("Location: http://map.wisc.edu/s/t8w0uh14");
-					break;
-				case "Mechanical Engineering":
-					header("Location: http://map.wisc.edu/s/az9nnst7");
-					break;
-				case "Grainger Hall":
-					header("Location: http://map.wisc.edu/s/qp0ckpoc");
-					break;
-				default:
-					echo "<img src='/connect/floorplan/sad_puppy.jpg'>";
-					break;
-			}
-		}
-		else {
-			//if GET["l"] has a value but it doesn't match an image or predefined location, give them the puppy 
-			echo "<img src='/connect/floorplan/sad_puppy.jpg'>";
-		}
-	}
-	//if GET["l"] doesn't have a value, give them the puppy
-	else {
-		echo "<img src='/connect/floorplan/sad_puppy.jpg'>"; 
-	}	
+/*
+if (!isset($_SERVER['HTTP_ORIGIN'])) {
+    echo "This is not cross-domain request";
+    exit;
+}
+*/
+$wildcard = FALSE; // Set $wildcard to TRUE if you do not plan to check or limit the domains
+$credentials = FALSE; // Set $credentials to TRUE if expects credential requests (Cookies, Authentication, SSL certificates)
+$allowedOrigins = array('https://connectdev.supportuw.org', 'https://connect.supportuw.org');
+/*
+if (!in_array($_SERVER['HTTP_ORIGIN'], $allowedOrigins) && !$wildcard) {
+    // Origin is not allowed
+    exit;
+}
+*/
+//$origin = $wildcard && !$credentials ? '*' : $_SERVER['HTTP_ORIGIN'];
+$origin = $wildcard && !$credentials ? '*' : "https://stage.supportuw.org";
+//echo $origin."<br>";
+
+header("Access-Control-Allow-Origin: " . $origin);
+if ($credentials) {
+    header("Access-Control-Allow-Credentials: true");
+}
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+header("Access-Control-Allow-Headers: Origin");
+header('P3P: CP="CAO PSA OUR"'); // Makes IE to support cookies
+
+// Handling the Preflight
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') { 
+	echo "exited on preflight";
+    exit;
+}
+
+
+
+
 ?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="employeelist.js" type="text/javascript"></script>
+
+	<style>
+		html{font:10pt Arial}
+	</style>
+</head>
+
+<body>
+	<select id="employees">
+		<option>Select an employee...</option>
+
+	</select>
+	<p id="employee_name"></p>
+	<div id="floormap"></div>
+
+
+
+</body>
+
+</html>
