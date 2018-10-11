@@ -4850,12 +4850,16 @@
     <rect id="137" class="cls-19 seat" data-seat="137" x="980.48" y="588.73" width="22.8" height="40.92"/>
     <rect id="135" class="cls-19 seat" data-seat="135" x="957.8" y="657.01" width="22.68" height="40.92"/>
     <rect id="136" class="cls-19 seat" data-seat="136" x="980.48" y="657.01" width="22.8" height="40.92"/>
-    <rect id="140" class="cls-19 seat" data-seat="140" x="509.84" y="756.37" width="20.28" height="46.68"/>
-    <rect id="145" class="cls-19 seat" data-seat="145" x="534" y="756.37" width="22.16" height="44.63"/>
-    <rect id="144" class="cls-19 seat" data-seat="144" x="534.8" y="803.05" width="21.06" height="44.95"/>
-    <rect id="141" class="cls-19 seat" data-seat="141" x="509.84" y="801.97" width="20.28" height="46.68"/>
-    <rect id="142" class="cls-19 seat" data-seat="142" x="508.76" y="850" width="22.32" height="45.45"/>
-    <rect id="143" class="cls-19 seat" data-seat="143" x="534.8" y="848" width="21.36" height="47.45"/>
+    
+    
+    
+    <rect id="140TD" class="cls-19 seat" data-seat="140TD" x="476" y="756.4" width="54.1" height="46.7"/>
+    <rect id="141TD" class="cls-19 seat" data-seat="141TD" x="476" y="802" width="54.1" height="46.7"/>
+    <rect id="142TD" class="cls-19 seat" data-seat="142TD" x="476" y="850" width="55.1" height="45.5"/>
+    <rect id="143TD" class="cls-19 seat" data-seat="143TD" x="534.8" y="848" width="54.1" height="47.5"/>
+    <rect id="144TD" class="cls-19 seat" data-seat="144TD" x="534.8" y="803.1" width="54.1" height="44.9"/>
+    <rect id="145TD" class="cls-19 seat" data-seat="145TD" x="534" y="756.4" width="54.9" height="44.6"/>
+
     <rect id="146" class="cls-19 seat" data-seat="146" x="600.68" y="839.17" width="22.68" height="40.92"/>
     <rect id="147" class="cls-19 seat" data-seat="147" x="687.2" y="839.17" width="22.8" height="40.83"/>
     <rect id="148" class="cls-19 seat" data-seat="148" x="760.76" y="817.33" width="41.04" height="22.8"/>
@@ -4872,6 +4876,8 @@
     <rect id="159" class="cls-19 seat" data-seat="159" x="922.88" y="992.77" width="22.68" height="42.48"/>
     <rect id="160" class="cls-19 seat" data-seat="160" x="1080.92" y="1182.49" width="22.68" height="41.04"/>
     <rect id="161" class="cls-19 seat" data-seat="161" x="1101.6" y="1181.05" width="25.2" height="44.04"/>
+    <rect id="1003" x="1221.7" y="1079.5" class="cls-19 seat" data-seat="1003" width="124.2" height="76.9"/>
+	  <rect id="1004" x="1221.7" y="1160.4" class="cls-19 seat" data-seat="1004" width="123.6" height="76.8"/>
   </g>
   <g id="Numbers">
     <text id="num141"  class="cls-20 seat seat_num" data-seat="141" transform="translate(404.67 885.5)">141</text>
@@ -4915,11 +4921,12 @@
     <text id="num137" class="cls-16 seat seat_num" data-seat="137"  transform="translate(985.5 612)">137</text>
     <text id="num138" class="cls-16 seat seat_num" data-seat="138"  transform="translate(985 532.5)">138</text>
     <text id="num139" class="cls-16 seat seat_num" data-seat="139"  transform="translate(947.5 420)">139</text>
-    <text id="num140" class="cls-16 seat seat_num" data-seat="140"  transform="translate(514.5 783.95)">140</text>
-    <text id="num141" class="cls-16 seat seat_num" data-seat="141"  transform="translate(514.5 832.29)">141</text>
-    <text id="num142" class="cls-16 seat seat_num" data-seat="142"  transform="translate(513.5 877.36)">142</text>
-    <text id="num144" class="cls-16 seat seat_num" data-seat="144"  transform="translate(538.5 832)">144</text>
-    <text id="num145" class="cls-16 seat seat_num" data-seat="145"  transform="translate(538.5 784.5)">145</text>
+    <text id="num140TD" class="cls-16 seat seat_num" data-seat="140TD"  transform="translate(481.5 788.9533)">140TD</text>
+    <text id="num141TD" class="cls-16 seat seat_num" data-seat="141TD"  transform="translate(481.5 837.2933)">141TD</text>
+    <text id="num142TD" class="cls-16 seat seat_num" data-seat="142TD"  transform="translate(481.5 882.3641)">142TD</text>
+    <text id="num143TD" class="cls-16 seat seat_num" data-seat="143TD"  transform="translate(561 882.5)">143TD</text>
+    <text id="num144TD" class="cls-16 seat seat_num" data-seat="144TD"  transform="translate(561.5 837)">144TD</text>
+    <text id="num145TD" class="cls-16 seat seat_num" data-seat="145TD"  transform="translate(560.5 788.5)">145TD</text>
     <text id="num146" class="cls-16 seat seat_num" data-seat="146"  transform="translate(604.72 862.27)">146</text>
     <text id="num147" class="cls-16 seat seat_num" data-seat="147"  transform="translate(691.36 862.78)">147</text>
     <text id="num148" class="cls-16 seat seat_num" data-seat="148"  transform="translate(774.2 832)">148</text>
@@ -4936,6 +4943,8 @@
     <text id="num159" class="cls-16 seat seat_num" data-seat="159"  transform="translate(927.68 1016.84)">159</text>
     <text id="num160" class="cls-16 seat seat_num" data-seat="160"  transform="translate(1084.68 1205)">160</text>
     <text id="num161" class="cls-16 seat seat_num" data-seat="161"  transform="translate(1108.32 1205.29)">161</text>
-    <text id="num143" class="cls-16 seat seat_num" data-seat="143"  transform="translate(538 877.5)">143</text>
+    
+    <text transform="matrix(1 0 0 1 1318.333 1132.167)" data-seat="1003" id="num1003" class="cls-16 seat seat_num">1003</text>
+	<text transform="matrix(1 0 0 1 1319.167 1182.5)" data-seat="1004" id="num1004" class="cls-16 seat seat_num">1004</text>
   </g>
 </svg>

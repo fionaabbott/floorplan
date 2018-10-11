@@ -3,9 +3,10 @@
     <style>
       .cls-1, .cls-11, .cls-6, .cls-7 {
         fill: none;
+        pointer-events:visible
       }
 
-      rect.seat{fill:#fff;stroke:#000}
+      rect.seat{stroke:#000;pointer-events:visible}
 
       .cls-2 {
         font-size: 10px;

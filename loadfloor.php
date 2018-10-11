@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 //echo json_encode(array('status' => 'OK'));
 $floor = "";
 
-$floors = array("1848-1","1848-2","1848-3","1848-4","650-1","650-3");
+$floors = array("1848-1","1848-2","1848-3","1848-4","1848-B","650-1","650-3");
 
 if(in_array($_REQUEST['l'],$floors)){
     switch($_REQUEST['l']){
@@ -49,6 +49,10 @@ if(in_array($_REQUEST['l'],$floors)){
 
         case "1848-4":
         echo "<p class='heading'>1848 University Avenue, Fourth Floor</p>";
+        break;
+
+        case "1848-B":
+        echo "<p class='heading'>1848 University Avenue, Fourth Basement</p>";
         break;
 
         case "650-1":

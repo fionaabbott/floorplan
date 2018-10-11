@@ -13,13 +13,15 @@ $(document).ready(function() {
 
   function highlightSeat(seat) {
     $("rect#" + seat).css("fill", "#C5050C");
+   // $("rect#" + seat).css("stroke", "#000");
     $("text#num" + seat).css("fill", "#FFFFFF");
     $("text#num" + seat).css("cursor", "pointer");
     $("rect#" + seat).css("cursor", "pointer");
   }
 
   function hideSeat(seat) {
-    $("rect#" + seat).css("fill", "#fff");
+    $("rect#" + seat).css("fill", "none");
+    //$("rect#" + seat).css("stroke", "#000");
     $("text#num" + seat).css("fill", "#000");
     $("text#num" + seat).css("cursor", "default");
     $("rect#" + seat).css("cursor", "default");
@@ -37,28 +39,31 @@ $(document).ready(function() {
   var floater = false;
   //console.log(location);
 
+  function isFloater(location) {
+    if (location.search("TD") !== -1) {
+      return true;
+    }
+
+    return false;
+  }
+
+
   if (getQueryVariable("l") !== false) {
     location = getQueryVariable("l");
-    if (location.search(/(1848|650)-\d{3}/) !== -1) {
-      var location_bits = location.split("-");
-      building = location_bits[0];
-      seat = location_bits[1];
-      floor = seat.substring(0, 1);
-    } else if (location.search(/(1848|650)-\d{1}/) !== -1) {
-      var location_bits = location.split("-");
-      building = location_bits[0];
+    var location_bits = location.split("-");
 
-      if (location.search("TD") !== -1) {
-        floater = true;
-        floor = location_bits[1].substring(0, 1);
-        seat = location_bits[1];
-        location = building + "-" + floor;
-      } else {
-        floor = location_bits[1];
-      }
-    } else {
-      location = "650-1";
+    if (isFloater(location) === true) {
+      floater = true;
     }
+    
+    building = location_bits[0];
+    floor = location_bits[1].substring(0, 1);
+
+    if (location_bits[1].length > 1) {
+      seat = location_bits[1];
+    }
+    
+    location = building + "-" + floor;
   }
 
   console.log("location: " + location);
@@ -161,54 +166,8 @@ $(document).ready(function() {
           
         }
       });
-/*
-      $(":not('.seat')").hover(function () {
-        $("title").text("");
-      })
-*/
-      /*
-      //console.log(seat);
-      $("rect.seat").toggle(
-        function() {
-          if (seat != "") {
-            hideSeat(seat);
-            floater = false;
-            $("#employee_name").html("");
-          }
-          seat = $(this).attr("data-seat");
-          //console.log(this);
-          highlightSeat(seat);
 
-          if ($("option[value='" + seat + "']").text()) {
-            $("#employee_name").html(
-              $("option[value='" + seat + "']").text() +
-                " sits here at " +
-                seat +
-                "."
-            );
-
-            //adds a tooltip
-            //$("rect#"+seat).append("<title>"+$("option[value='" + seat + "']").text() + " sits here.</title>");
-            $("title").text(
-              $("option[value='" + seat + "']").text() +
-                " sits here at " +
-                seat +
-                "."
-            );
-          } else {
-            $("#employee_name").html(seat + " is not permanently assigned.");
-            $("title").text(seat + " is not permanently assigned.");
-          }
-        },
-        function() {
-          hideSeat(seat);
-          $("#employee_name").html("");
-          $("title").text("");
-        }
-      );*/
     });
   }
 
-  //console.log(employees_arr.length);
-  //console.log(emp);
 });

@@ -945,11 +945,7 @@
       <rect class="cls-4" x="1076.08" y="509.6" width="22.44" height="54"/>
     </g>
   </g>
-  <g id="Numbers">
-    <text id="numB008a" class="cls-6 seat seat_num" data-seat="B008a" transform="translate(1012.67 546.67)">B008a</text>
-    <text id="numB005" class="cls-7 seat seat_num" data-seat="B005" transform="translate(1119 771.67)">B005</text>
-    <text id="numB009b" class="cls-6 seat seat_num" data-seat="B008b" transform="translate(1013.67 471.33)">B008b</text>
-  </g>
+
   <g id="Names">
     <text class="cls-7" transform="translate(1197.33 744)"><tspan class="cls-8">W</tspan><tspan class="cls-9" x="19.44" y="0">omen</tspan><tspan class="cls-10" x="71.97" y="0">’</tspan><tspan x="76.26" y="0">s</tspan><tspan x="0" y="25.2">Locker </tspan><tspan x="0" y="50.4">Room</tspan></text>
     <text class="cls-7" transform="translate(1386.03 745)">Men<tspan class="cls-8" x="40.85" y="0">’</tspan><tspan x="45.14" y="0">s</tspan><tspan x="-7.39" y="25.2">Locker</tspan><tspan x="-0.38" y="50.4">Room</tspan></text>
@@ -976,5 +972,10 @@
     <rect id="B005" data-seat="B005" class="cls-1 seat" x="1102.48" y="668.24" width="81.72" height="201.72"/>
     <rect id="B008b" data-seat="B008b" class="cls-1 seat" x="985.96" y="433.64" width="96.29" height="54.61"/>
     <rect id="B008a" data-seat="B008a" class="cls-1 seat" x="985.96" y="523.64" width="90.12" height="64.44"/>
+  </g>
+    <g id="Numbers">
+    <text id="numB008a" class="cls-6 seat seat_num" data-seat="B008a" transform="translate(1012.67 546.67)">B008a</text>
+    <text id="numB005" class="cls-7 seat seat_num" data-seat="B005" transform="translate(1119 771.67)">B005</text>
+    <text id="numB008b" class="cls-6 seat seat_num" data-seat="B008b" transform="translate(1013.67 471.33)">B008b</text>
   </g>
 </svg>

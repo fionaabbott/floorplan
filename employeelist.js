@@ -37,53 +37,53 @@ $(document).ready(function() {
   var floater = false;
   //console.log(location);
 
+
+  function isFloater(location) {
+    if (location.search("TD") !== -1) {
+      return true;
+    }
+
+    return false;
+  }
+
+
   if (getQueryVariable("l") !== false) {
     location = getQueryVariable("l");
-    //console.log("location at line 42: " + location);
-    if (location.search(/(1848|650)-\d{3}/) !== -1) {
-      var location_bits = location.split("-");
-      building = location_bits[0];
-      seat = location_bits[1];
-      floor = seat.substring(0, 1);
-      location = building + "-" + floor;
-    } else if (location.search(/(1848|650)-\d{1}/) !== -1) {
-      var location_bits = location.split("-");
-      building = location_bits[0];
-      //console.log("Line 52 location: " + location);
+    var location_bits = location.split("-");
 
-      if (location.search("TD") !== -1) {
-        floor = location_bits[1].substring(0, 1);
-        location = building + "-" + floor;
-        //console.log("Line 51 location: " + location);
-        floater = true;
-        
-      } else {
-        floor = location_bits[1];
-      }
-    } else {
-      location = "650-1";
+    if (isFloater(location) === true) {
+      floater = true;
     }
+    
+    building = location_bits[0];
+    floor = location_bits[1].substring(0, 1);
+
+    if (location_bits[1].length > 1) {
+      seat = location_bits[1];
+    }
+    
+    location = building + "-" + floor;
   }
 
   
   console.log("location: " + location);
-  console.log("building: "+building);
-  console.log("floor: " + floor);
-  console.log("seat: " + seat);
+  //console.log("building: "+building);
+  //console.log("floor: " + floor);
+  //console.log("seat: " + seat);
 
   //var url = "users.json";
   var url = "https://connectdev.supportuw.org/api/users?token=" + token;
   
   $.getJSON(url, function (data) {
     $.each(data, function (key, employee_info) {
-      console.log(employee_info["addressLine2"]);
+      //console.log(employee_info["addressLine2"]);
       if (employee_info["addressLine2"].search(location) !== -1) {
         //floor = employee_info["addressLine1"].split("-")[0];
         //console.log("floor: "+floor);
         seat = employee_info["addressLine2"].split("-")[1];
 
-        console.log(employee_info['firstName']+" "+employee_info['lastName']+ " sits at address: "+employee_info['addressLine1']);
-        console.log("seat: "+seat);
+        console.log(employee_info['firstName']+" "+employee_info['lastName']+ " sits at address: "+employee_info['addressLine2']);
+        //console.log("seat: "+seat);
         if (seat.charAt(0) == floor) {
           employees_arr.push(employee_info);
         }

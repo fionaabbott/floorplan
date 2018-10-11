@@ -4983,18 +4983,20 @@
     <rect id="403" data-seat="403" class="cls-1 seat" x="307.5" y="534.5" width="22" height="40"/>
     <rect id="402" data-seat="402" class="cls-1 seat" x="307.5" y="466.5" width="22" height="41"/>
     <rect id="401" data-seat="401" class="cls-1 seat" x="307.5" y="396.5" width="22" height="40"/>
+    <rect id="4000" data-seat="4000" x="1409" y="516" class="cls-1 seat" width="92" height="66"/>
+    <rect id="4007" data-seat="4007" x="1012" y="421" class="cls-1 seat" width="148" height="82"/>
   </g>
     <g id="Numbers">
     <text class="cls-43" transform="translate(1182.61 1108.5)">4003</text>
     <text class="cls-43" transform="translate(1093.11 850.5)">4002</text>
-    <text class="cls-43" transform="translate(1440.11 566.5)">4000</text>
+    <text class="cls-43 seat seat_num" data-seat="4000" id="num4000" transform="translate(1440.11 566.5)">4000</text>
     <text id="num430" data-seat="430" class="cls-43 seat seat_num" transform="translate(1292.61 498.09)">430</text>
     <text id="num429" data-seat="429" class="cls-43 seat seat_num" transform="translate(1292.61 566.5)">429</text>
     <text id="num428" data-seat="428" class="cls-43 seat seat_num" transform="translate(1292.61 636.5)">428</text>
     <text id="num427" data-seat="427" class="cls-43 seat seat_num" transform="translate(1213.11 619.09)">427</text>
     <text id="num426" data-seat="426" class="cls-43 seat seat_num" transform="translate(1213.11 549)">426</text>
     <text id="num425" data-seat="425" class="cls-43 seat seat_num" transform="translate(1213.11 478.59)">425</text>
-    <text class="cls-43" transform="translate(1070.11 468.5)">4007</text>
+    <text id="num4007" data-seat="4007" class="cls-43 seat seat_num" transform="translate(1070.11 468.5)">4007</text>
     <text class="cls-43" transform="translate(1074.11 590.5)">4001</text>
     <text class="cls-43" transform="translate(967.61 560)">4005</text>
     <text class="cls-43" transform="translate(971.61 479.5)">4006</text>

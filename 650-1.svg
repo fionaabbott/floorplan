@@ -724,9 +724,7 @@
       <line class="cls-3" x1="589.08" y1="84" x2="589.08" y2="90.36"/>
       <line class="cls-3" x1="586.08" y1="90.36" x2="592.2" y2="90.36"/>
       <line class="cls-3" x1="586.08" y1="84" x2="592.2" y2="84"/>
-      <line class="cls-3" x1="1264.08" y1="84" x2="1264.08" y2="90.36"/>
-      <line class="cls-3" x1="1261.08" y1="90.36" x2="1267.2" y2="90.36"/>
-      <line class="cls-3" x1="1261.08" y1="84" x2="1267.2" y2="84"/>
+ =
       <line class="cls-3" x1="1264.08" y1="534" x2="1264.08" y2="540.36"/>
       <line class="cls-3" x1="1261.08" y1="540.36" x2="1267.2" y2="540.36"/>
       <line class="cls-3" x1="1261.08" y1="534" x2="1267.2" y2="534"/>
@@ -765,14 +763,7 @@
       <line class="cls-3" x1="815.88" y1="92.88" x2="819.72" y2="92.88"/>
       <line class="cls-3" x1="809.64" y1="91.68" x2="809.64" y2="82.68"/>
       <line class="cls-3" x1="808.56" y1="81.6" x2="808.56" y2="97.8"/>
-      <line class="cls-3" x1="1259.64" y1="82.68" x2="1268.64" y2="82.68"/>
-      <line class="cls-3" x1="1269.72" y1="81.6" x2="1258.44" y2="81.6"/>
-      <line class="cls-3" x1="1268.64" y1="82.68" x2="1268.64" y2="91.68"/>
-      <line class="cls-3" x1="1269.72" y1="92.88" x2="1269.72" y2="81.6"/>
-      <line class="cls-3" x1="1268.64" y1="91.68" x2="1259.64" y2="91.68"/>
-      <line class="cls-3" x1="1258.44" y1="92.88" x2="1269.72" y2="92.88"/>
-      <line class="cls-3" x1="1259.64" y1="91.68" x2="1259.64" y2="82.68"/>
-      <line class="cls-3" x1="1258.44" y1="81.6" x2="1258.44" y2="92.88"/>
+
       <line class="cls-3" x1="808.08" y1="448.68" x2="737.4" y2="448.68"/>
       <polyline class="cls-3" points="737.4 459.96 737.4 453.24 808.92 453.24"/>
       <line class="cls-3" x1="737.4" y1="448.68" x2="737.4" y2="393.24"/>
@@ -4863,8 +4854,8 @@
       <polyline class="cls-3" points="628.2 428.52 628.2 437.52 601.2 437.52 601.2 428.52 628.2 428.52"/>
       <text class="cls-11" transform="translate(591.96 426.6)">RECEPTION DESK</text>
       <text class="cls-11" transform="translate(610.44 435.48)">131</text>
-      <polyline class="cls-3" points="1281.6 62.16 1281.6 71.16 1254.6 71.16 1254.6 62.16 1281.6 62.16"/>
-      <text class="cls-11" transform="translate(1263.84 69.12)">141</text>
+
+
       <polyline class="cls-3" points="1257.6 292.56 1257.6 301.56 1230.6 301.56 1230.6 292.56 1257.6 292.56"/>
       <text class="cls-11" transform="translate(1239.48 299.52)">142</text>
       <polyline class="cls-3" points="1424.64 283.68 1424.64 292.68 1397.64 292.68 1397.64 283.68 1424.64 283.68"/>
@@ -11414,6 +11405,8 @@
     <rect id="106C" data-seat="106C" class="cls-1 seat" x="1506.96" y="808.68" width="40.56" height="58.56"/>
     <rect id="106B" data-seat="106B" class="cls-1 seat" x="1439.52" y="808.68" width="40.44" height="58.56"/>
     <rect id="106A" data-seat="106A" class="cls-1 seat" x="1439.52" y="723.24" width="40.44" height="58.44"/>
+    <rect id="141" data-seat="141" class="cls-1 seat" x="1221.3" y="50" width="64.7" height="36.5"/>
+    
   </g>
   <g id="Numbers">
     <text class="cls-24 seat seat_num" transform="translate(1107.44 54.64)" data-seat="140L" id="num140L">140L</text>
@@ -11441,5 +11434,7 @@
     <text class="cls-24 seat seat_num" transform="translate(1515.11 843.31)" data-seat="106C" id="num106C">106C</text>
     <text class="cls-24 seat seat_num" transform="translate(1448.11 843.31)" data-seat="106B" id="num106B">106B</text>
     <text class="cls-24 seat seat_num" transform="translate(1449.11 755.31)" data-seat="106A" id="num106A">106A</text>
+   <!--<text class="cls-24 seat seat_num" transform="matrix(1 0 0 1 1244.3199 138.0798)" data-seat="141" id="num141">141</text>-->
+   <text class="cls-24 seat seat_num" transform="translate(1245 73)" data-seat="141" id="num141">141</text>
   </g>
 </svg>
