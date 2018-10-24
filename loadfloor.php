@@ -18,7 +18,7 @@ if ($credentials) {
     header("Access-Control-Allow-Credentials: true");
 }
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
-header("Access-Control-Allow-Headers: Origin");
+header('Access-Control-Allow-Headers: Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With');
 header('P3P: CP="CAO PSA OUR"'); // Makes IE to support cookies
 
 // Handling the Preflight
@@ -66,7 +66,7 @@ if(in_array($_REQUEST['l'],$floors)){
     include($_REQUEST['l']).".svg";
 }else{
 
-    echo '<img src="https://stage.supportuw.org/connect/floorplan/sad_puppy.jpg" />';
+    echo '<img src="https://supportuw.org/connect/floorplan/sad_puppy.jpg" />';
 
 }
 
