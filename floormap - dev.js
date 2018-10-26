@@ -1,4 +1,5 @@
-$(document).ready(function() {
+$(document).ready(function () {
+  
   function getQueryVariable(variable) {
     var query = window.location.search.substring(1);
     var vars = query.split("&");
@@ -32,8 +33,10 @@ $(document).ready(function() {
     $("rect#" + seat).css("cursor", "default");
   }
   //$("#employees").css("border", "1px solid black");
-  console.log($("#employees"));
-  console.log($("#employees").attr("data-all-emps"));
+  //console.log($("#employees"));
+  //console.log($("#employee_name").attr("id"));
+  //console.log($("#employee_name").attr("id"));
+  console.log($("#emplist").val());
   //var employees_arr = $("#employees").attr("data-all-emps").split(",");
   //var svgfile = "https://stage.supportuw.org/connect/floorplan/loadfloor.php";
   //var svgfile = "https://supportuw.org/connect/floorplan/loadfloor.php";
@@ -179,6 +182,10 @@ $(document).ready(function() {
           }
         }
 */
+        
+        if (getQueryVariable("n")) {
+          var employee_name = getQueryVariable("n");
+        }
         console.log(employee_name);
         $("#employee_name").html(
           $("option[value='"+seat+"']").text() +

@@ -124,7 +124,8 @@ var token ="96C3CF52BEA2C736B8CB68CFF26EF77F0E476F151B93A91B13CC868C24B8F8E8A46A
           "</option>"
       );      
 
-      $("#employees").attr("data-all-emps", datastr);
+      //$("#employee_name").attr("data-all-emps", datastr);
+      $("#emplist").val(datastr);
       
     });
 
