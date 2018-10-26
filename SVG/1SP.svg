@@ -120,20 +120,21 @@
     <text class="cls-9" transform="translate(335.03 386.48)">5</text>
   </g>
   <g id="Boxes">
-    <rect id="916" data-seat="916" class="cls-1" x="172.4" y="245.09" width="64.51" height="45.81"/>
-    <rect id="908" data-seat="908" class="cls-1" x="413.17" y="339.09" width="59.33" height="90.62"/>
-    <rect id="907" data-seat="907" class="cls-1" x="476.53" y="339.09" width="59.14" height="90.62"/>
-    <rect id="906" data-seat="906" class="cls-1" x="539.89" y="339.09" width="58.94" height="90.62"/>
-    <rect id="905" data-seat="905" class="cls-1" x="603.06" y="332.18" width="59.33" height="97.54"/>
-    <rect id="909" data-seat="909" class="cls-1" x="539.89" y="220.96" width="77.76" height="69.56"/>
-    <rect id="910" data-seat="910" class="cls-1" x="539.89" y="158.42" width="77.76" height="62.54"/>
-    <rect id="914TD" data-seat="914TD" class="cls-1" x="466.55" y="231.57" width="69.31" height="58.94"/>
-    <rect id="913TD" data-seat="913TD" class="cls-1" x="466.55" y="176.66" width="69.31" height="54.91"/>
-    <rect id="902" data-seat="902" class="cls-1" x="667" y="158.42" width="91.2" height="60.1"/>
-    <rect id="901" data-seat="901" class="cls-1" x="667" y="96.21" width="91.2" height="58.75"/>
-    <rect id="900" data-seat="900" class="cls-1" x="667" y="39.38" width="91.2" height="53.38"/>
-    <rect id="911TD" data-seat="911TD" class="cls-1" x="539.89" y="88.53" width="58.56" height="42.05"/>
-    <rect id="912TD" data-seat="912TD" class="cls-1" x="539.89" y="39.38" width="58.56" height="49.15"/>
+    <rect id="916" data-seat="916" class="cls-1 seat" x="172.4" y="245.09" width="64.51" height="45.81"/>
+    <rect id="908" data-seat="908" class="cls-1 seat" x="413.17" y="339.09" width="59.33" height="90.62"/>
+    <rect id="907" data-seat="907" class="cls-1 seat" x="476.53" y="339.09" width="59.14" height="90.62"/>
+    <rect id="906" data-seat="906" class="cls-1 seat" x="539.89" y="339.09" width="58.94" height="90.62"/>
+    <rect id="905" data-seat="905" class="cls-1 seat" x="603.06" y="332.18" width="59.33" height="97.54"/>
+    <rect id="909" data-seat="909" class="cls-1 seat" x="539.89" y="220.96" width="77.76" height="69.56"/>
+    <rect id="910" data-seat="910" class="cls-1 seat" x="539.89" y="158.42" width="77.76" height="62.54"/>
+    <rect id="914TD" data-seat="914TD" class="cls-1 seat" x="466.55" y="231.57" width="69.31" height="58.94"/>
+    <rect id="913TD" data-seat="913TD" class="cls-1 seat" x="466.55" y="176.66" width="69.31" height="54.91"/>
+    <rect id="902" data-seat="902" class="cls-1 seat" x="667" y="158.42" width="91.2" height="60.1"/>
+    <rect id="901" data-seat="901" class="cls-1 seat" x="667" y="96.21" width="91.2" height="58.75"/>
+    <rect id="900" data-seat="900" class="cls-1 seat" x="667" y="39.38" width="91.2" height="53.38"/>
+    <rect id="911TD" data-seat="911TD" class="cls-1 seat" x="539.89" y="88.53" width="58.56" height="42.05"/>
+    <rect id="912TD" data-seat="912TD" class="cls-1 seat" x="539.89" y="39.38" width="58.56" height="49.15"/>
+    <rect id="903" data-seat="903" class="cls-1 seat" x="662.4" y="221" width="95.8" height="65.1"/>
   </g>
   <g id="Numbers">
     <text id="num910" data-seat="910" class="cls-10 seat seat_num" transform="translate(558.75 173.34)">910</text>

@@ -31,11 +31,13 @@ $(document).ready(function() {
     $("text#num" + seat).css("cursor", "default");
     $("rect#" + seat).css("cursor", "default");
   }
-
-  var employees_arr = [];
+  //$("#employees").css("border", "1px solid black");
+  console.log($("#employees"));
+  console.log($("#employees").attr("data-all-emps"));
+  //var employees_arr = $("#employees").attr("data-all-emps").split(",");
   //var svgfile = "https://stage.supportuw.org/connect/floorplan/loadfloor.php";
   //var svgfile = "https://supportuw.org/connect/floorplan/loadfloor.php";
-  var svgfile = "https://connect.supportuw.org/attachment/708487500000/37247/650-1.svg";
+  var svgfile = "https://connectdev.supportuw.org/attachment/726612400000/28641/650-1.svg";
 
   //loads initial location based on query string
   //var location = getQueryVariable("l");
@@ -101,6 +103,11 @@ $(document).ready(function() {
       case "1848-B":
       svgfile = "https://connectdev.supportuw.org/attachment/726735930000/28642/1848-B.svg";
         break;
+      case "1SP-9":
+        svgfile = "https://connectdev.supportuw.org/attachment/831926000000/28664/1SP.svg";
+        break;
+      default:
+      svgfile = "https://connectdev.supportuw.org/attachment/726612400000/28641/650-1.svg";
     }
   }
 
@@ -135,6 +142,8 @@ $(document).ready(function() {
     }
   });
 
+  //console.log($("#employees"));
+
   //determine if we've got the right floor loaded
 
   if ($("#floormap").html() != "") {
@@ -145,11 +154,34 @@ $(document).ready(function() {
     $("#floormap").load(svgfile,function(){
       //console.log("location: "+location);
 
+
       if ((seat !== false) & (floater === false)) {
         highlightSeat(seat);
-        console.log($("option[value='" + seat + "']").text());
+        //console.log($("#employees > option[value='" + seat + "']").text());
+        //console.log("seat: " + seat);
+        //console.log($(document.getElementById("employees")).options[1].text);
+        /*
+        var employees = $("#employees option");
+        var employee_names = $.map(employees, function (employee) {
+          return employee.value;
+        });
+
+
+
+        console.log(employee_names);
+        */
+        /*
+        var employee_name = function (seat) {
+          for (var i = 0; i < employees_arr; i++){
+            if (employees_arr[i].split(":")[1] == seat) {
+              return employees_arr[i].split(":")[0];
+            }
+          }
+        }
+*/
+        console.log(employee_name);
         $("#employee_name").html(
-          $("option[value='" + seat + "']").text() +
+          $("option[value='"+seat+"']").text() +
           " sits here at " +
           seat +
           "."
