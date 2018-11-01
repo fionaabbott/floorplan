@@ -81,25 +81,28 @@ $(document).ready(function() {
     
     switch (location) {
       case "650-1":
-      svgfile = "https://connectdev.supportuw.org/attachment/726612400000/28641/650-1.svg";
+      svgfile = "https://connect.supportuw.org/attachment/724341600000/37253/650-1.svg";
         break;
       case "650-3":
-      svgfile = "https://connectdev.supportuw.org/attachment/744692700000/28643/650-3.svg";
+      svgfile = "https://connect.supportuw.org/attachment/708487500000/37247/650-3.svg";
         break;
       case "1848-1":
-      svgfile = "https://connectdev.supportuw.org/attachment/726738100000/28646/1848-1.svg";
+      svgfile = "https://connect.supportuw.org/attachment/708490100000/37251/1848-1.svg";
         break;
       case "1848-2":
-      svgfile = "https://connectdev.supportuw.org/attachment/726788500000/28647/1848-2.svg";
+      svgfile = "https://connect.supportuw.org/attachment/708547570000/37252/1848-2.svg";
         break;
       case "1848-3":
-      svgfile = "https://connectdev.supportuw.org/attachment/726737830000/28644/1848-3.svg";
+      svgfile = "https://connect.supportuw.org/attachment/708489270000/37250/1848-3.svg";
         break;
       case "1848-4":
-      svgfile = "https://connectdev.supportuw.org/attachment/726737970000/28645/1848-4.svg";
+      svgfile = "https://connect.supportuw.org/attachment/708489630000/37249/1848-4.svg";
         break;
       case "1848-B":
-      svgfile = "https://connectdev.supportuw.org/attachment/726735930000/28642/1848-B.svg";
+      svgfile = "https://connect.supportuw.org/attachment/708487500000/37248/1848-B.svg";
+        break;
+      case "1SP-9":
+        svgfile = "https://connect.supportuw.org/attachment/700071170000/37330/1SP.svg";
         break;
     }
   }

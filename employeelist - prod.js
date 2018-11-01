@@ -84,6 +84,7 @@ var token = "E421A33DDE1DD2390373D3C53D750EECB731A2810A02C80B6E9CED65B67AD7F0050
   
   $.getJSON(url, function (data) {
     //console.log(data);
+    var cubicle = "";
     $.each(data, function (key, employee_info) {
       //console.log(employee_info);
       //console.log(location);
@@ -92,13 +93,13 @@ var token = "E421A33DDE1DD2390373D3C53D750EECB731A2810A02C80B6E9CED65B67AD7F0050
         if (employee_info["addressLine1"].search(location) !== -1 || employee_info["addressLine1"].search("Reception") !== -1) {
           //floor = employee_info["addressLine1"].split("-")[0];
           //console.log("floor: "+floor);
-          seat = employee_info["addressLine1"].split("-")[1];
+          cubicle = employee_info["addressLine1"].split("-")[1];
   
           //console.log(employee_info['firstName']+" "+employee_info['lastName']+ " sits at address: "+employee_info['addressLine1']);
           //console.log("seat: "+seat);
-          if (seat.charAt(0) == floor) {
+          if (cubicle.charAt(0) == floor) {
             employees_arr.push(employee_info);
-          } else if (floor == 1 && seat == "Reception" && building == "1848") {
+          } else if (floor == 1 && cubicle == "Reception" && building == "1848") {
             //console.log("seat: "+seat);
             employees_arr.push(employee_info);
           }
@@ -121,10 +122,10 @@ var token = "E421A33DDE1DD2390373D3C53D750EECB731A2810A02C80B6E9CED65B67AD7F0050
     $.each(employees_arr, function (key,employee_info) {
       //console.log(employee_info['firstName']+" "+employee_info['lastName']+ " sits at address: "+employee_info['addressLine1']);
       
-      seat = employee_info["addressLine1"].split("-")[1];
+      cubicle = employee_info["addressLine1"].split("-")[1];
       $("#employees").append(
         "<option value='" +
-          seat +
+        cubicle +
           "'>" +
           employee_info["firstName"] +
           " " +
@@ -133,6 +134,11 @@ var token = "E421A33DDE1DD2390373D3C53D750EECB731A2810A02C80B6E9CED65B67AD7F0050
       );      
       
     });
+    if (seat !== false && floater === false) {
+      $("#employee_name").html(
+        $("option[value='" + seat + "']").text() + " sits here at " + seat + "."
+      );
+    }
 
   });
 
