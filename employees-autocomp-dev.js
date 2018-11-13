@@ -11,61 +11,65 @@ $(document).ready(function() {
   var userURL = "";
   //var url = "https://connect.supportuw.org/api/users?token=" + token;
 
-  $.getJSON(url, function(data) {
-    //console.log(data);
-      var cubicle = "";
-      //var link = "https://connect.supportuw.org/content/37208/interactive-floor-maps?l=";
+  $.getJSON(url, {
 
-    $.each(data, function(key, employee_info) {
-      //console.log(employee_info);
-      //console.log(location);
-      //console.log(employee_info["addressLine1"]);
-      var link = "";
 
-      if (employee_info["addressLine2"] != null) {
-        userURL = "https://connectdev.supportuw.org/api/users/" + employee_info['userId'] + "/customfields?token=" + token;
-        $.getJSON(userURL, function (userData) {
-          $.each(userData, function (key, user_info) {
-            //console.log(user_info);
-            if (user_info["name"] == "Address") {
-              //console.log(user_info["value"]);
-              employee_info["link"] = user_info["value"];
-              var test = employee_info["link"].match(/href="([^\'\"]+)/g);
+  }, function (data) {
+    //$.each(data, function(key, employee_info) {
 
-              if (test) {
-                
-                test = test.toString();
-                employee_info["link"] = test.substring(6);
-              }
-              
-            }
-          });
-        });
+    /*
+          if (employee_info["addressLine2"] != null) {
+            userURL = "https://connectdev.supportuw.org/api/users/" + employee_info['userId'] + "/customfields?token=" + token;
+            $.getJSON(userURL, function (userData) {
+              $.each(userData, function (key, user_info) {
+                //console.log(user_info);
+                if (user_info["name"] == "Address") {
+                  //console.log(user_info["value"]);
+                  employee_info["link"] = user_info["value"];
+                  var test = employee_info["link"].match(/href="([^\'\"]+)/g);
+    
+                  if (test) {
+                    
+                    test = test.toString();
+                    employee_info["link"] = test.substring(6);
+                  }
+                  
+                }
+              });
+            });
+    */
 
-          //floor = employee_info["addressLine1"].split("-")[0];
-          //console.log("floor: "+floor);
-          cubicle = employee_info["addressLine2"].split("-")[1];
-          employees_arr.push(employee_info);
+    //employees_arr.push(employee_info);
 
-      }
-    });
-
-    employees_arr.sort(function(a, b) {
+    //}
+    data.sort(function(a, b){
       var x = a["firstName"].toLowerCase();
       var y = b["firstName"].toLowerCase();
       return x < y ? -1 : x > y ? 1 : 0;
     });
 
+    $.each(data, function (key, employee_info) {
+      //make api call to get user link
+    });
+    console.log(data);
+    });
 
+
+    });
+
+    //console.log(employees_arr);
     $.each(employees_arr, function(key, employee_info) {
       //console.log(employee_info['firstName']+" "+employee_info['lastName']+ " sits at address: "+employee_info['addressLine1']);
         //var link = "https://connectdev.supportuw.org/content/28071/interactive-floor-maps?l=";
         //cubicle = employee_info["addressLine2"];
       //link += cubicle;
+      console.log(employee_info);
+      console.log(key);
+      console.log(employees_arr[key]["link"]);
 
-      $("#empList").append(
-        "<option data-url=\""+employee_info["link"]+"\" value='"+ employee_info["firstName"] + " " + employee_info["lastName"] + "'></option>"
-      );
+      //$("#empList").append(
+        //"<option data-url=\""+employee_info["link"]+"\" value='"+ employee_info["firstName"] + " " + employee_info["lastName"] + "'></option>"
+     // );
 
       });
       
@@ -74,5 +78,5 @@ $(document).ready(function() {
           window.location=$("option[value='"+$(this).val()+"']").attr("data-url");
       });
 
-  });
+  //});
 });
