@@ -148,7 +148,7 @@ $(document).ready(function() {
     $("#floormap").load(svgfile,function(){
       //console.log("location: "+location);
 
-      if (seat !== false) {
+      if ((seat !== false) & (floater === false)) {
         highlightSeat(seat);
         console.log($("option[value='" + seat + "']").text());
         $("#employee_name").html(
@@ -157,7 +157,7 @@ $(document).ready(function() {
           seat +
           "."
         );
-      } else if ((seat === false) && (floater === true)) {
+      } else if ((seat !== false) & (floater === true)) {
         $("#employee_name").html(
           $("option[value='" + seat + "']").text() +
           " does not have a permanently assigned location on this floor."
