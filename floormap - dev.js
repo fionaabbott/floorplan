@@ -31,11 +31,13 @@ $(document).ready(function() {
     $("text#num" + seat).css("cursor", "default");
     $("rect#" + seat).css("cursor", "default");
   }
+  var token ="96C3CF52BEA2C736B8CB68CFF26EF77F0E476F151B93A91B13CC868C24B8F8E8A46A50CB6B8856813D8A3A1EC67A792F01ED822612B7030D6CFC62C155DBD4913606B3D2EBAE8061B5A29F392D9916D7A7E5D25BED8C0E349BFA662924B68338150B3EAD655344F0220BDA87A2F049368929CA00DAD1DAAB0A2384B1FD61FBE6";
 
   var employees_arr = [];
   //var svgfile = "https://stage.supportuw.org/connect/floorplan/loadfloor.php";
   //var svgfile = "https://supportuw.org/connect/floorplan/loadfloor.php";
   var svgfile = "https://connectdev.supportuw.org/attachment/726612400000/28641/650-1.svg";
+  var url = "https://connectdev.supportuw.org/api/users?token=" + token;
 
   //loads initial location based on query string
   //var location = getQueryVariable("l");
@@ -147,96 +149,137 @@ $(document).ready(function() {
   } else {
     console.log("Floorplan is empty");
     //$("#floormap").load(svgfile + "?l=" + building + "-" + floor, function () {
-    $("#floormap").load(svgfile,function(){
-      //console.log("location: "+location);
-
-      if (seat !== false) {
-        highlightSeat(seat);
-        console.log($("option[value='" + seat + "']").text());
-        $("#employee_name").html(
-          $("option[value='" + seat + "']").text() +
-          " sits here at " +
-          seat +
-          "."
-        );
-      } else if ((seat === false) && (floater === true)) {
-        $("#employee_name").html(
-          $("option[value='" + seat + "']").text() +
-          " does not have a permanently assigned location on this floor."
-        );
-      }
-
-      $(".seat").click(function (event) {
-        //alert("Hi!");
-        //alert(event.currentTarget);
-        if (seat != "") {
-          hideSeat(seat);
-          floater = false;
-          $("#employee_name").html("");
-          $("title").text("");
-        }
-        seat = $(this).attr("data-seat");
-        highlightSeat(seat);
-        //console.log($("option[value='" + seat + "']").length);
-
-
-        if ($("option[value='" + seat + "']").text()) {
-          $("#employee_name").html("");
-          name = "";
-
-          if ($("option[value='" + seat + "']").length > 1) {
-            //console.log($("option[value='" + seat + "']").text());
-            $.each($("option[value='" + seat + "']"), function (key, value) {
-              if (key <= $("option[value='" + seat + "']").length - 1) {
-                name += $(this).text() + " and ";
+    $("#floormap").load(svgfile, function () {
+      $.getJSON(url, function (data) {
+        //console.log(data);
+        var cubicle = "";
+        $.each(data, function (key, employee_info) {
+          //console.log(employee_info);
+          //console.log(location);
+          //console.log(employee_info["addressLine1"]);
+          if(employee_info["addressLine2"] != null){
+            if (employee_info["addressLine2"].search(location) !== -1 || employee_info["addressLine2"].search("Reception") !== -1) {
+              //floor = employee_info["addressLine1"].split("-")[0];
+              //console.log("floor: "+floor);
+              cubicle = employee_info["addressLine2"].split("-")[1];
+      
+              //console.log(employee_info['firstName']+" "+employee_info['lastName']+ " sits at address: "+employee_info['addressLine1']);
+              //console.log("seat: "+seat);
+              if (cubicle.charAt(0) == floor) {
+                employees_arr.push(employee_info);
+              } else if (floor == 1 && seat == "Reception" && building == "1848") {
+                //console.log("seat: "+seat);
+                employees_arr.push(employee_info);
               }
-              
-              //console.log(key + ": " + $(this).text());
-            });
-
-            name = name.substring(0, name.length - 4);
-            //name = $("option[value='" + seat + "']").text();
-            //console.log($("option[value='" + seat + "']"));
-            $("#employee_name").html(name + " sit here at " + seat + ".");
-            //adds a tooltip
-            //$("rect#"+seat).append("<title>"+$("option[value='" + seat + "']").text() + " sits here.</title>");
-            $("title").text(name + " sit here at " + seat + ".");
-            
-          } else {
-            name = $("option[value='" + seat + "']").text();
-            $("#employee_name").html(name + " sits here at " + seat + ".");
-            //adds a tooltip
-            //$("rect#"+seat).append("<title>"+$("option[value='" + seat + "']").text() + " sits here.</title>");
-            $("title").text(name +" sits here at " +seat +".");
+            }  
           }
-
+        
+        });
+        
+        
+        employees_arr.sort(function (a, b) {
+          var x = a["firstName"].toLowerCase();
+          var y = b["firstName"].toLowerCase();
+          return x < y ? -1 : x > y ? 1 : 0;
+        });
+    
+        //console.log(employees_arr);
+        var datastr = "";
+    
+        $.each(employees_arr, function (key,employee_info,) {
+          //console.log(employee_info['firstName']+" "+employee_info['lastName']+ " sits at address: "+employee_info['addressLine1']);
           
-
-
-        } else {
-          $("#employee_name").html(seat + " is not permanently assigned.");
-          $("title").text(seat + " is not permanently assigned.");
+          cubicle = employee_info["addressLine2"].split("-")[1];
+          datastr += employee_info['firstName'] + " " + employee_info['lastName'] + ":" + cubicle + ",";
+          $("#employees").append(
+            "<option value='" +
+              cubicle +
+              "'>" +
+              employee_info["firstName"] +
+              " " +
+              employee_info["lastName"] +
+              "</option>"
+          );      
+    
+          //$("#employee_name").attr("data-all-emps", datastr);
+          $("#emplist").val(datastr);
+          
+        });
+        if (seat !== false && floater === false) {
+          $("#employee_name").html(
+            $("option[value='" + seat + "']").text() + " sits here at " + seat + "."
+          );
         }
-      });
-
-      //$("[class!='seat']").hover(function () {
-      //$("title").text("");
-      //});
-
-      $(".seat").hover(function () {
-        if ($(this).attr("data-seat") !== seat) {
-          //console.log($(this).attr("data-seat"));
-          $("title").text($(this).attr("data-seat"));
-        } else {
+        if (seat !== false) {
+          highlightSeat(seat);
+          console.log($("option[value='" + seat + "']").text());
+          $("#employee_name").html(
+            $("option[value='" + seat + "']").text() +
+            " sits here at " +
+            seat +
+            "."
+          );
+        } else if ((seat === false) && (floater === true)) {
+          $("#employee_name").html(
+            $("option[value='" + seat + "']").text() +
+            " does not have a permanently assigned location on this floor."
+          );
+        }
+  
+        $(".seat").click(function (event) {
+          if (seat != "") {
+            hideSeat(seat);
+            floater = false;
+            $("#employee_name").html("");
+            $("title").text("");
+          }
+          seat = $(this).attr("data-seat");
+          highlightSeat(seat);
+  
           if ($("option[value='" + seat + "']").text()) {
-            $("title").text($("option[value='" + seat + "']").text() + " sits here at " + seat + ".");
+            $("#employee_name").html("");
+            name = "";
+  
+            if ($("option[value='" + seat + "']").length > 1) {
+              $.each($("option[value='" + seat + "']"), function (key, value) {
+                if (key <= $("option[value='" + seat + "']").length - 1) {
+                  name += $(this).text() + " and ";
+                }
+              });
+  
+              name = name.substring(0, name.length - 4);
+              $("#employee_name").html(name + " sit here at " + seat + ".");
+              //adds a tooltip
+              $("title").text(name + " sit here at " + seat + ".");
+              
+            } else {
+              name = $("option[value='" + seat + "']").text();
+              $("#employee_name").html(name + " sits here at " + seat + ".");
+              //adds a tooltip
+              $("title").text(name +" sits here at " +seat +".");
+            }
           } else {
+            $("#employee_name").html(seat + " is not permanently assigned.");
             $("title").text(seat + " is not permanently assigned.");
           }
-          
-        }
-      }, function () {
-        $("title").text("");
+        });
+  
+        $(".seat").hover(function () {
+          if ($(this).attr("data-seat") !== seat) {
+            //console.log($(this).attr("data-seat"));
+            $("title").text($(this).attr("data-seat"));
+          } else {
+            if ($("option[value='" + seat + "']").text()) {
+              $("title").text($("option[value='" + seat + "']").text() + " sits here at " + seat + ".");
+            } else {
+              $("title").text(seat + " is not permanently assigned.");
+            }
+            
+          }
+        }, function () {
+          $("title").text("");
+        });    
+    
       });
 
     });

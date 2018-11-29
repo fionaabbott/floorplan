@@ -34,8 +34,9 @@ $(document).ready(function() {
       );
     });
 
+
     $("#empAutoComp").change(function () {
-      console.log("link on interactive floor map: ",$("option[value='" + $(this).val() + "']").attr("data-url"));
+      //console.log("link on interactive floor map: ",$("option[value='" + $(this).val() + "']").attr("data-url"));
       //window.location = $("option[value='" + $(this).val() + "']").attr("data-url"
       //);
       var floormap = $("option[value='" + $(this).val() + "']").attr("data-url");
