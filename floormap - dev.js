@@ -13,7 +13,7 @@ $(document).ready(function() {
 
   function highlightSeat(seat) {
     $("rect#" + seat).css("fill", "#C5050C");
-   // $("rect#" + seat).css("stroke", "#000");
+    // $("rect#" + seat).css("stroke", "#000");
     $("text#num" + seat).css("fill", "#FFFFFF");
     $("text#num" + seat).css("cursor", "pointer");
     $("rect#" + seat).css("cursor", "pointer");
@@ -25,18 +25,20 @@ $(document).ready(function() {
     } else {
       $("rect#" + seat).css("fill", "#fff");
     }
-    
+
     //$("rect#" + seat).css("stroke", "#000");
     $("text#num" + seat).css("fill", "#000");
     $("text#num" + seat).css("cursor", "default");
     $("rect#" + seat).css("cursor", "default");
   }
-  var token ="96C3CF52BEA2C736B8CB68CFF26EF77F0E476F151B93A91B13CC868C24B8F8E8A46A50CB6B8856813D8A3A1EC67A792F01ED822612B7030D6CFC62C155DBD4913606B3D2EBAE8061B5A29F392D9916D7A7E5D25BED8C0E349BFA662924B68338150B3EAD655344F0220BDA87A2F049368929CA00DAD1DAAB0A2384B1FD61FBE6";
+  var token =
+    "34E65427F4CC697CE997AFD16F5DFF880513F54E0ADF63CFF4154D3CFB4A13887231D167682BED295729EEEE6472D6174B1CAD0711624D45F65437B78CCC99B54A8407BA25CF0EDC5CCA141F0ABB6B22F2777D4F917BF2096B18C5997FDE9AA9DA5BC28538CCEBD62A576DF1D877CAD34F4A09D068224BC864372D37D8BDBB7A";
 
   var employees_arr = [];
   //var svgfile = "https://stage.supportuw.org/connect/floorplan/loadfloor.php";
   //var svgfile = "https://supportuw.org/connect/floorplan/loadfloor.php";
-  var svgfile = "https://connectdev.supportuw.org/attachment/726612400000/28641/650-1.svg";
+  var svgfile =
+    "https://connectdev.supportuw.org/attachment/726612400000/28641/650-1.svg";
   var url = "https://connectdev.supportuw.org/api/users?token=" + token;
 
   //loads initial location based on query string
@@ -57,7 +59,6 @@ $(document).ready(function() {
     return false;
   }
 
-
   if (getQueryVariable("l") !== false) {
     location = getQueryVariable("l");
     var location_bits = location.split("-");
@@ -65,7 +66,7 @@ $(document).ready(function() {
     if (isFloater(location) === true) {
       floater = true;
     }
-    
+
     building = location_bits[0];
 
     if (location.search("Reception") !== -1) {
@@ -73,41 +74,49 @@ $(document).ready(function() {
     } else {
       floor = location_bits[1].substring(0, 1);
     }
-    
 
     if (location_bits[1].length > 1) {
       seat = location_bits[1];
     }
-    
+
     location = building + "-" + floor;
-    
+
     switch (location) {
       case "650-1":
-      svgfile = "https://connectdev.supportuw.org/attachment/726612400000/28641/650-1.svg";
+        svgfile =
+          "https://connectdev.supportuw.org/attachment/726612400000/28641/650-1.svg";
         break;
       case "650-3":
-      svgfile = "https://connectdev.supportuw.org/attachment/744692700000/28643/650-3.svg";
+        svgfile =
+          "https://connectdev.supportuw.org/attachment/744692700000/28643/650-3.svg";
         break;
       case "1848-1":
-      svgfile = "https://connectdev.supportuw.org/attachment/726738100000/28646/1848-1.svg";
+        svgfile =
+          "https://connectdev.supportuw.org/attachment/726738100000/28646/1848-1.svg";
         break;
       case "1848-2":
-      svgfile = "https://connectdev.supportuw.org/attachment/726788500000/28647/1848-2.svg";
+        svgfile =
+          "https://connectdev.supportuw.org/attachment/726788500000/28647/1848-2.svg";
         break;
       case "1848-3":
-      svgfile = "https://connectdev.supportuw.org/attachment/726737830000/28644/1848-3.svg";
+        svgfile =
+          "https://connectdev.supportuw.org/attachment/726737830000/28644/1848-3.svg";
         break;
       case "1848-4":
-      svgfile = "https://connectdev.supportuw.org/attachment/726737970000/28645/1848-4.svg";
+        svgfile =
+          "https://connectdev.supportuw.org/attachment/726737970000/28645/1848-4.svg";
         break;
       case "1848-B":
-      svgfile = "https://connectdev.supportuw.org/attachment/726735930000/28642/1848-B.svg";
+        svgfile =
+          "https://connectdev.supportuw.org/attachment/726735930000/28642/1848-B.svg";
         break;
       case "1SP-9":
-        svgfile = "https://connectdev.supportuw.org/attachment/831926000000/28664/1SP.svg";
+        svgfile =
+          "https://connectdev.supportuw.org/attachment/831926000000/28664/1SP.svg";
         break;
       default:
-      svgfile = "https://connectdev.supportuw.org/attachment/726612400000/28641/650-1.svg";
+        svgfile =
+          "https://connectdev.supportuw.org/attachment/726612400000/28641/650-1.svg";
     }
   }
 
@@ -116,117 +125,126 @@ $(document).ready(function() {
   //console.log("floor: " + floor);
   //console.log("seat: " + seat);
 
-  $("#employees").change(function() {
-    floater = false;
-    $("#employee_name").html("");
-
-    if (seat != "") {
-      hideSeat(seat);
-    }
-    seat = $("select#employees option:selected").val();
-    
-    if ($("#" + seat).length < 1) {
-      floater = true;
-    }
-    //console.log(seat);
-    if (!floater) {
-      highlightSeat(seat);
-      $("#employee_name").html(
-        $("select#employees option:selected").text() + " sits at " + seat + "."
-      );
-    } else {
-      $("#employee_name").html(
-        $("select#employees option:selected").text() +
-          " does not have a permanently assigned location on this floor."
-      );
-    }
-  });
-
   //determine if we've got the right floor loaded
 
   if ($("#floormap").html() != "") {
     console.log("Floor plan is loaded");
   } else {
-    console.log("Floorplan is empty");
+    //console.log("Floorplan is empty");
     //$("#floormap").load(svgfile + "?l=" + building + "-" + floor, function () {
-    $("#floormap").load(svgfile, function () {
+    $("#floormap").load(svgfile, function() {
       $.getJSON(url, function (data) {
+        function putValueBackFromPlaceholder() {
+          var $this = $('#other');
+          if ($this.val() === '') {
+              $this.val($this.attr('placeholder'));
+              $this.attr('placeholder','');
+          }
+      }
+  
+      $('#employeeList')
+          .on('click', function(e) {
+              var $this = $(this);
+              var inpLeft = $this.offset().left;
+              var inpWidth = $this.width();
+              var clickedLeft = e.clientX;
+              var clickedInInpLeft = clickedLeft - inpLeft;
+              var arrowBtnWidth = 12;
+              if ((inpWidth - clickedInInpLeft) < arrowBtnWidth ) {
+                  $this.attr('placeholder',$this.val());
+                  $this.val('');
+              }
+              else {
+                  putValueBackFromPlaceholder();
+              }
+          })
+          .on('mouseleave', putValueBackFromPlaceholder);
         //console.log(data);
         var cubicle = "";
-        $.each(data, function (key, employee_info) {
+        $.each(data, function(key, employee_info) {
           //console.log(employee_info);
           //console.log(location);
           //console.log(employee_info["addressLine1"]);
-          if(employee_info["addressLine2"] != null){
-            if (employee_info["addressLine2"].search(location) !== -1 || employee_info["addressLine2"].search("Reception") !== -1) {
+          if (employee_info["addressLine2"] != null) {
+            if (
+              employee_info["addressLine2"].search(location) !== -1 ||
+              employee_info["addressLine2"].search("Reception") !== -1
+            ) {
               //floor = employee_info["addressLine1"].split("-")[0];
               //console.log("floor: "+floor);
               cubicle = employee_info["addressLine2"].split("-")[1];
-      
+
               //console.log(employee_info['firstName']+" "+employee_info['lastName']+ " sits at address: "+employee_info['addressLine1']);
               //console.log("seat: "+seat);
               if (cubicle.charAt(0) == floor) {
                 employees_arr.push(employee_info);
-              } else if (floor == 1 && seat == "Reception" && building == "1848") {
+              } else if (
+                floor == 1 &&
+                seat == "Reception" &&
+                building == "1848"
+              ) {
                 //console.log("seat: "+seat);
                 employees_arr.push(employee_info);
               }
-            }  
+            }
           }
-        
         });
-        
-        
-        employees_arr.sort(function (a, b) {
+
+        employees_arr.sort(function(a, b) {
           var x = a["firstName"].toLowerCase();
           var y = b["firstName"].toLowerCase();
           return x < y ? -1 : x > y ? 1 : 0;
         });
-    
+
         //console.log(employees_arr);
         var datastr = "";
-    
-        $.each(employees_arr, function (key,employee_info,) {
+
+        $.each(employees_arr, function(key, employee_info) {
           //console.log(employee_info['firstName']+" "+employee_info['lastName']+ " sits at address: "+employee_info['addressLine1']);
-          
+
           cubicle = employee_info["addressLine2"].split("-")[1];
-          datastr += employee_info['firstName'] + " " + employee_info['lastName'] + ":" + cubicle + ",";
+          datastr +=
+            employee_info["firstName"] +
+            " " +
+            employee_info["lastName"] +
+            ":" +
+            cubicle +
+            ",";
           $("#employees").append(
-            "<option value='" +
+            "<option data-seat='" +
               cubicle +
-              "'>" +
+              "' value='" +
               employee_info["firstName"] +
               " " +
               employee_info["lastName"] +
-              "</option>"
-          );      
-    
-          //$("#employee_name").attr("data-all-emps", datastr);
-          $("#emplist").val(datastr);
-          
+              "'>"
+          );
         });
         if (seat !== false && floater === false) {
           $("#employee_name").html(
-            $("option[value='" + seat + "']").text() + " sits here at " + seat + "."
+            $("option[data-seat='" + seat + "']").val() +
+              " sits here at " +
+              seat +
+              "."
           );
         }
         if (seat !== false) {
           highlightSeat(seat);
-          console.log($("option[value='" + seat + "']").text());
+          console.log($("option[data-seat='" + seat + "']").text());
           $("#employee_name").html(
-            $("option[value='" + seat + "']").text() +
-            " sits here at " +
-            seat +
-            "."
+            $("option[data-seat='" + seat + "']").val() +
+              " sits here at " +
+              seat +
+              "."
           );
-        } else if ((seat === false) && (floater === true)) {
+        } else if (seat === false && floater === true) {
           $("#employee_name").html(
-            $("option[value='" + seat + "']").text() +
-            " does not have a permanently assigned location on this floor."
+            $("option[data-seat='" + seat + "']").val() +
+              " does not have a permanently assigned location on this floor."
           );
         }
-  
-        $(".seat").click(function (event) {
+
+        $(".seat").click(function(event) {
           if (seat != "") {
             hideSeat(seat);
             floater = false;
@@ -234,55 +252,91 @@ $(document).ready(function() {
             $("title").text("");
           }
           seat = $(this).attr("data-seat");
+          //console.log("name", $("option[data-seat='" + seat + "']").val());
           highlightSeat(seat);
-  
-          if ($("option[value='" + seat + "']").text()) {
+
+          if ($("option[data-seat='" + seat + "']").val()) {
             $("#employee_name").html("");
             name = "";
-  
-            if ($("option[value='" + seat + "']").length > 1) {
-              $.each($("option[value='" + seat + "']"), function (key, value) {
-                if (key <= $("option[value='" + seat + "']").length - 1) {
+
+            if ($("option[data-seat='" + seat + "']").length > 1) {
+              $.each($("option[data-seat='" + seat + "']"), function(
+                key,
+                value
+              ) {
+                if (key <= $("option[data-seat='" + seat + "']").length - 1) {
                   name += $(this).text() + " and ";
                 }
               });
-  
+
               name = name.substring(0, name.length - 4);
               $("#employee_name").html(name + " sit here at " + seat + ".");
               //adds a tooltip
               $("title").text(name + " sit here at " + seat + ".");
-              
             } else {
-              name = $("option[value='" + seat + "']").text();
+              name = $("option[data-seat='" + seat + "']").val();
               $("#employee_name").html(name + " sits here at " + seat + ".");
               //adds a tooltip
-              $("title").text(name +" sits here at " +seat +".");
+              $("title").text(name + " sits here at " + seat + ".");
             }
           } else {
             $("#employee_name").html(seat + " is not permanently assigned.");
             $("title").text(seat + " is not permanently assigned.");
           }
         });
-  
-        $(".seat").hover(function () {
-          if ($(this).attr("data-seat") !== seat) {
-            //console.log($(this).attr("data-seat"));
-            $("title").text($(this).attr("data-seat"));
-          } else {
-            if ($("option[value='" + seat + "']").text()) {
-              $("title").text($("option[value='" + seat + "']").text() + " sits here at " + seat + ".");
-            } else {
-              $("title").text(seat + " is not permanently assigned.");
-            }
-            
-          }
-        }, function () {
-          $("title").text("");
-        });    
-    
-      });
 
+        $(".seat").hover(
+          function() {
+            if ($(this).attr("data-seat") !== seat) {
+              //console.log($(this).attr("data-seat"));
+              $("title").text($(this).attr("data-seat"));
+            } else {
+              if ($("option[data-seat='" + seat + "']").val()) {
+                $("title").text(
+                  $("option[data-seat='" + seat + "']").val() +
+                    " sits here at " +
+                    seat +
+                    "."
+                );
+              } else {
+                $("title").text(seat + " is not permanently assigned.");
+              }
+            }
+          },
+          function() {
+            $("title").text("");
+          }
+        );
+
+        $("#employeeList").change(function () {
+          //console.log("change event triggered");
+          //console.log("employee name: ", $(this).val());
+          floater = false;
+          $("#employee_name").html("");
+
+          if (seat != "") {
+            hideSeat(seat);
+          }
+          seat = $("option[value='" + $(this).val() + "']").attr("data-seat");
+          //console.log("seat: ", seat);
+
+          if ($("#" + seat).length < 1) {
+            floater = true;
+          }
+          //console.log(seat);
+          if (!floater) {
+            highlightSeat(seat);
+            $("#employee_name").html(
+              $(this).val() + " sits at " + seat + "."
+            );
+          } else {
+            $("#employee_name").html(
+              $(this).val() +
+                " does not have a permanently assigned location on this floor."
+            );
+          }
+        });
+      });
     });
   }
-
 });
