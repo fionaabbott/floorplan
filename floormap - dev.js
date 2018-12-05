@@ -134,31 +134,12 @@ $(document).ready(function() {
     //$("#floormap").load(svgfile + "?l=" + building + "-" + floor, function () {
     $("#floormap").load(svgfile, function() {
       $.getJSON(url, function (data) {
-        function putValueBackFromPlaceholder() {
-          var $this = $('#other');
-          if ($this.val() === '') {
-              $this.val($this.attr('placeholder'));
-              $this.attr('placeholder','');
-          }
-      }
-  
-      $('#employeeList')
-          .on('click', function(e) {
-              var $this = $(this);
-              var inpLeft = $this.offset().left;
-              var inpWidth = $this.width();
-              var clickedLeft = e.clientX;
-              var clickedInInpLeft = clickedLeft - inpLeft;
-              var arrowBtnWidth = 12;
-              if ((inpWidth - clickedInInpLeft) < arrowBtnWidth ) {
-                  $this.attr('placeholder',$this.val());
-                  $this.val('');
-              }
-              else {
-                  putValueBackFromPlaceholder();
-              }
-          })
-          .on('mouseleave', putValueBackFromPlaceholder);
+        $("#employeeList").click(function (event) {
+          $(this).val("");
+          //$(this).click();
+        });
+        
+
         //console.log(data);
         var cubicle = "";
         $.each(data, function(key, employee_info) {
@@ -335,6 +316,8 @@ $(document).ready(function() {
                 " does not have a permanently assigned location on this floor."
             );
           }
+
+          $(this).val("");
         });
       });
     });
